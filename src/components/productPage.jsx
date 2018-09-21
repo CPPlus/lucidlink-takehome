@@ -37,8 +37,8 @@ class ProductPage extends Page {
         currentProduct: {
             id: 1,
             name: "",
-            price: 0,
-            quantity: 0
+            price: "",
+            quantity: ""
         },
         productList: []
     };
@@ -109,7 +109,7 @@ class ProductPage extends Page {
         return (
             <div className="col">
                 <div className="row">
-                    <h4>Product Page</h4>
+                    <h4 className="headerCaption">Product Page</h4>
                 </div>
                 <div id="productRowHeader" className="row">
                     <div className="col">Name</div>
@@ -127,7 +127,7 @@ class ProductPage extends Page {
                         <div className="col">{product.quantity}</div>
                         <div className="col text-right">
                             <button
-                                className="btn btn-sm btn-warning"
+                                className="btn btn-sm btn-warning removeProductButton"
                                 onClick={() => {
                                     this.removeProduct(product.id);
                                 }}
@@ -137,16 +137,16 @@ class ProductPage extends Page {
                         </div>
                     </div>
                 ))}
-                <div className="row">
+                <div id="productAddSection" className="row">
                     <div className="col">
                         <form className="form-row">
                             <div className="form-group col">
-                                <label htmlFor="productName">Name</label>
                                 <input
                                     type="text"
                                     autoComplete="off"
                                     className="form-control form-control-sm"
                                     id="productName"
+                                    placeholder="Name"
                                     aria-describedby="productNameHelp"
                                     value={this.state.currentProduct.name}
                                     onChange={e => {
@@ -155,19 +155,13 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
-                                <small
-                                    id="productNameHelp"
-                                    className="form-text text-muted"
-                                >
-                                    Come up with any name...
-                                </small>
                             </div>
                             <div className="form-group col">
-                                <label htmlFor="productPrice">Price</label>
                                 <input
                                     min="0"
                                     step="1"
                                     type="number"
+                                    placeholder="Price"
                                     className="form-control form-control-sm"
                                     id="productPrice"
                                     value={this.state.currentProduct.price}
@@ -177,21 +171,13 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
-                                <small
-                                    id="productNameHelp"
-                                    className="form-text text-muted"
-                                >
-                                    ... any price ...
-                                </small>
                             </div>
                             <div className="form-group col">
-                                <label htmlFor="productQuantity">
-                                    Quantity
-                                </label>
                                 <input
                                     type="number"
                                     min="0"
                                     step="1"
+                                    placeholder="Quantity"
                                     className="form-control form-control-sm"
                                     id="productQuantity"
                                     value={this.state.currentProduct.quantity}
@@ -201,16 +187,9 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
-                                <small
-                                    id="productNameHelp"
-                                    className="form-text text-muted"
-                                >
-                                    ... and take as much as you want!
-                                </small>
                             </div>
                             <div className="col">
                                 <button
-                                    id="addProductButton"
                                     type="button"
                                     className="btn-sm btn-primary col"
                                     onClick={this.addProductFromState}

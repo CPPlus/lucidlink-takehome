@@ -3,7 +3,7 @@ import Page from "./page";
 
 class DeliveryPage extends Page {
     renderPage() {
-        return <h4>Delivery Page</h4>;
+        return <h4 className="headerCaption">Delivery Page</h4>;
     }
 }
 

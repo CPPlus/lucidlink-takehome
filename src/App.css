@@ -20,53 +20,73 @@ body {
 }
 
 /* Generic */
+#lgWrapper .removeProductButton {
+    margin-top: -4px;
+    background: #2c2e2bcc;
+}
+
+#lgWrapper .removeProductButton:hover {
+    color: white;
+    background: #cc0000;
+}
+
+#lgWrapper .headerCaption {
+    color: var(--lg-grey-dark);
+    border-bottom: 2px dotted var(--lg-grey-light);
+    display: block;
+    padding-bottom: 8px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#lgWrapper .form-control-sm {
+    height: calc(1.4125rem + 2px);
+    font-size: 0.775rem;
+}
 
 .highlightText {
     color: var(--lg-blue);
 }
 
-#addProductButton {
-    margin-top: 30px;
-}
-
-.deleteProductButton {
-    margin-top: 9px;
-}
-
 #productRowHeader {
-    color: var(--lg-green-dark);
     font-size: 14px;
+}
+
+#productRowHeader,
+#productAddSection {
+    background: #2c2e2bcc;
+    color: white;
+}
+
+#productAddSection {
+    padding-top: 15px;
+    margin-bottom: 15px;
 }
 
 .productRow {
     cursor: pointer;
+    transition-timing-function: ease;
+    transition: 0.1s;
 }
 
 #productRowHeader,
 .productRow {
-    font-size: 13px;
+    font-size: 0.755rem;
     height: 30px;
     line-height: 30px;
 }
 
-.productRow:hover {
-    outline: 2px solid var(--lg-green);
-}
-
 .productRow:nth-child(even) {
-    background: #accc5865;
-}
-
-.productRow:nth-child(even):hover {
-    background: #accc5895;
+    background: var(--lg-grey-dark);
 }
 
 .productRow:nth-child(odd) {
-    background: #accc5825;
+    background: var(--lg-grey-light);
 }
 
-.productRow:nth-child(odd):hover {
-    background: #accc5815;
+.productRow:hover {
+    background: #accc5895;
+    outline: 2px solid var(--lg-green);
 }
 
 /* Layout */
@@ -155,9 +175,14 @@ body {
 
 #lgWrapper .btn-primary {
     background: var(--lg-green);
+}
+
+#lgWrapper .btn-sm {
     border: none;
     border-radius: 0px;
     cursor: pointer;
+    padding: 0.22rem 0.5rem;
+    font-size: 0.775rem;
 }
 
 #lgWrapper .btn-primary:hover {
@@ -184,8 +209,6 @@ body {
     border-bottom: 2px solid var(--lg-green-dark);
 }
 
-#lgWrapper label,
-#lgWrapper small {
+#lgWrapper label {
     font-size: 12px;
-    color: var(--lg-grey-dark);
 }

@@ -3,7 +3,7 @@ import Page from "./page";
 
 class PaymentPage extends Page {
     renderPage() {
-        return <h4>Payment Page</h4>;
+        return <h4 className="headerCaption">Payment Page</h4>;
     }
 }
 
