@@ -1,12 +1,36 @@
 import React from "react";
 import Page from "./page";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faEuroSign } from "@fortawesome/free-solid-svg-icons";
+
 class ProductPage extends Page {
     constructor() {
         super();
 
-        this.addProduct = this.addProduct.bind(this);
+        this.addProductFromState = this.addProductFromState.bind(this);
         this.removeProduct = this.removeProduct.bind(this);
+    }
+
+    componentDidMount() {
+        let products = [
+                ["House", 100000, 1],
+                ["Apple", 0.3, 4],
+                ["Laptop", 2000, 1],
+                ["English Tea", 15, 2],
+                ["Car", 15000, 1]
+            ],
+            currentProduct = 0,
+            _this = this,
+            addProducts = function() {
+                if (currentProduct >= products.length) return;
+
+                _this.addProduct.apply(
+                    _this,
+                    products[currentProduct++].concat([addProducts])
+                );
+            };
+        addProducts();
     }
 
     state = {
@@ -41,13 +65,26 @@ class ProductPage extends Page {
         return JSON.parse(JSON.stringify(this.state));
     }
 
-    addProduct() {
+    addProductFromState() {
+        let product = this.state.currentProduct;
+        this.addProduct(product.name, product.price, product.quantity);
+    }
+
+    addProduct(name, price, quantity, callback = null) {
         let clonedState = this.cloneState();
         clonedState.productList.push(
-            Object.assign({}, this.state.currentProduct)
+            Object.assign(
+                {},
+                {
+                    id: this.state.currentProduct.id,
+                    name: name,
+                    price: price,
+                    quantity: quantity
+                }
+            )
         );
         clonedState.currentProduct.id++;
-        this.setState(clonedState);
+        this.setState(clonedState, callback);
     }
 
     removeProduct(id) {
@@ -55,9 +92,17 @@ class ProductPage extends Page {
         clonedState.productList = clonedState.productList.filter(
             p => p.id !== id
         );
-        console.log(this.state.productList);
-        console.log(clonedState.productList);
         this.setState(clonedState);
+    }
+
+    calculateTotal() {
+        let total = 0;
+        for (let i = 0; i < this.state.productList.length; i++) {
+            total +=
+                this.state.productList[i].price *
+                this.state.productList[i].quantity;
+        }
+        return total;
     }
 
     renderPage() {
@@ -66,20 +111,30 @@ class ProductPage extends Page {
                 <div className="row">
                     <h4>Product Page</h4>
                 </div>
+                <div id="productRowHeader" className="row">
+                    <div className="col">Name</div>
+                    <div className="col">Price</div>
+                    <div className="col">Quantity</div>
+                    <div className="col" />
+                </div>
                 {this.state.productList.map(product => (
-                    <div key={product.id} className="row">
+                    <div key={product.id} className="row productRow">
                         <div className="col">{product.name}</div>
-                        <div className="col">{product.price}</div>
+                        <div className="col">
+                            {product.price}{" "}
+                            <FontAwesomeIcon icon={faEuroSign} />
+                        </div>
                         <div className="col">{product.quantity}</div>
-                        <button
-                            type="submit"
-                            className="btn-sm btn-warning col"
-                            onClick={() => {
-                                this.removeProduct(product.id);
-                            }}
-                        >
-                            Remove
-                        </button>
+                        <div className="col text-right">
+                            <button
+                                className="btn btn-sm btn-warning"
+                                onClick={() => {
+                                    this.removeProduct(product.id);
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </div>
                     </div>
                 ))}
                 <div className="row">
@@ -89,10 +144,10 @@ class ProductPage extends Page {
                                 <label htmlFor="productName">Name</label>
                                 <input
                                     type="text"
-                                    className="form-control"
+                                    autoComplete="off"
+                                    className="form-control form-control-sm"
                                     id="productName"
                                     aria-describedby="productNameHelp"
-                                    placeholder="Name"
                                     value={this.state.currentProduct.name}
                                     onChange={e => {
                                         this.updateCurrentProductName(
@@ -104,16 +159,17 @@ class ProductPage extends Page {
                                     id="productNameHelp"
                                     className="form-text text-muted"
                                 >
-                                    Come up with any name.
+                                    Come up with any name...
                                 </small>
                             </div>
                             <div className="form-group col">
                                 <label htmlFor="productPrice">Price</label>
                                 <input
+                                    min="0"
+                                    step="1"
                                     type="number"
-                                    className="form-control"
+                                    className="form-control form-control-sm"
                                     id="productPrice"
-                                    placeholder="Price"
                                     value={this.state.currentProduct.price}
                                     onChange={e => {
                                         this.updateCurrentProductPrice(
@@ -121,6 +177,12 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
+                                <small
+                                    id="productNameHelp"
+                                    className="form-text text-muted"
+                                >
+                                    ... any price ...
+                                </small>
                             </div>
                             <div className="form-group col">
                                 <label htmlFor="productQuantity">
@@ -128,9 +190,10 @@ class ProductPage extends Page {
                                 </label>
                                 <input
                                     type="number"
-                                    className="form-control"
+                                    min="0"
+                                    step="1"
+                                    className="form-control form-control-sm"
                                     id="productQuantity"
-                                    placeholder="Quantity"
                                     value={this.state.currentProduct.quantity}
                                     onChange={e => {
                                         this.updateCurrentProductQuantity(
@@ -138,12 +201,19 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
+                                <small
+                                    id="productNameHelp"
+                                    className="form-text text-muted"
+                                >
+                                    ... and take as much as you want!
+                                </small>
                             </div>
                             <div className="col">
                                 <button
+                                    id="addProductButton"
                                     type="button"
                                     className="btn-sm btn-primary col"
-                                    onClick={this.addProduct}
+                                    onClick={this.addProductFromState}
                                 >
                                     Add
                                 </button>
@@ -151,6 +221,10 @@ class ProductPage extends Page {
                         </form>
                     </div>
                 </div>
+                <h5 className="highlightText">
+                    Total: {this.calculateTotal()}{" "}
+                    <FontAwesomeIcon icon={faEuroSign} />
+                </h5>
             </div>
         );
     }

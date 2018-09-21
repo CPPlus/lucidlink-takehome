@@ -4,91 +4,95 @@ import ProductPage from "./components/productPage";
 import DeliveryPage from "./components/deliveryPage";
 import PaymentPage from "./components/paymentPage";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faCartPlus,
+    faTruck,
+    faCreditCard
+} from "@fortawesome/free-solid-svg-icons";
+
 class App extends Component {
     state = { pages: [] };
+
+    pageId = 1;
 
     constructor() {
         super();
 
         this.state.pages.push(
-            this.createPageDescriptor("Cart", ProductPage, false)
+            this.createPageDescriptor(faCartPlus, ProductPage, true)
         );
         this.state.pages.push(
-            this.createPageDescriptor("Delivery", DeliveryPage, true)
+            this.createPageDescriptor(faTruck, DeliveryPage, false)
         );
         this.state.pages.push(
-            this.createPageDescriptor("Payment", PaymentPage, true)
+            this.createPageDescriptor(faCreditCard, PaymentPage, false)
         );
     }
 
-    createPageDescriptor(name, type, hidden) {
+    createPageDescriptor(icon, type, selected) {
         return {
-            name: name,
+            id: this.pageId++,
+            icon: icon,
             type: type,
-            hidden: hidden
+            selected: selected
         };
     }
 
     renderPageByDescriptor(page) {
         const TagName = page.type;
-        return <TagName key={page.name} hidden={page.hidden} />;
+        return <TagName key={page.id} hidden={!page.selected} />;
     }
 
-    selectPage(pageName) {
+    selectPage(pageId) {
         let modified = this.state.pages.map(a => Object.assign({}, a));
         for (let i = 0; i < modified.length; i++) {
-            if (modified[i].name === pageName) modified[i].hidden = false;
-            else modified[i].hidden = true;
+            if (modified[i].id === pageId) modified[i].selected = true;
+            else modified[i].selected = false;
         }
         this.setState({ pages: modified });
     }
 
+    getPageIconClasses(pageId) {
+        for (let i = 0; i < this.state.pages.length; i++)
+            if (this.state.pages[i].id === pageId)
+                if (this.state.pages[i].selected) return "lgSelected";
+        return " ";
+    }
+
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                            <a className="navbar-brand" href="#">
-                                Shopping
-                            </a>
-                            <button
-                                className="navbar-toggler"
-                                type="button"
-                                data-toggle="collapse"
-                                data-target="#navbarNav"
-                                aria-controls="navbarNav"
-                                aria-expanded="false"
-                                aria-label="Toggle navigation"
+            <div id="lgWrapper" className="toggled">
+                <div id="sidebar-wrapper">
+                    <ul className="sidebar-nav">
+                        <li className="sidebar-brand">
+                            <a href="#">LG</a>
+                        </li>
+                        {this.state.pages.map(page => (
+                            <li
+                                key={page.id}
+                                onClick={() => {
+                                    this.selectPage(page.id);
+                                }}
                             >
-                                <span className="navbar-toggler-icon" />
-                            </button>
-                            <div
-                                className="collapse navbar-collapse"
-                                id="navbarNav"
-                            >
-                                <ul className="navbar-nav">
-                                    {this.state.pages.map(page => (
-                                        <li
-                                            key={page.name}
-                                            className="nav-item"
-                                            onClick={() => {
-                                                this.selectPage(page.name);
-                                            }}
-                                        >
-                                            <a className="nav-link" href="#">
-                                                {page.name}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </nav>
+                                <a
+                                    href="#"
+                                    className={this.getPageIconClasses(page.id)}
+                                >
+                                    <FontAwesomeIcon icon={page.icon} />
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div id="page-content-wrapper">
+                    <div className="container-fluid">
+                        {this.state.pages.map(page =>
+                            this.renderPageByDescriptor(page)
+                        )}
                     </div>
                 </div>
-                {this.state.pages.map(page =>
-                    this.renderPageByDescriptor(page)
-                )}
             </div>
         );
     }
