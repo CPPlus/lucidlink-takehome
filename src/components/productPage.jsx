@@ -3,6 +3,7 @@ import Page from "./page";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEuroSign } from "@fortawesome/free-solid-svg-icons";
+import NoRecordsInfo from "./noRecordsInfo";
 
 class ProductPage extends Page {
     constructor() {
@@ -117,6 +118,11 @@ class ProductPage extends Page {
                     <div className="col">Quantity</div>
                     <div className="col" />
                 </div>
+                {
+                    <NoRecordsInfo
+                        areRecords={this.state.productList.length > 0}
+                    />
+                }
                 {this.state.productList.map(product => (
                     <div key={product.id} className="row productRow">
                         <div className="col">{product.name}</div>
