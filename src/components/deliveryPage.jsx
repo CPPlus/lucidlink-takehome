@@ -204,6 +204,8 @@ class DeliveryPage extends Page {
                                         type="radio"
                                         name="courier"
                                         id="deliveryByCourier"
+                                        checked
+                                        onChange={() => {}}
                                     />
                                     <label
                                         className="form-check-label"

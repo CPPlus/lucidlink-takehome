@@ -249,9 +249,12 @@ body {
 
 #lgWrapper input,
 #lgWrapper select,
-#lgWrapper textarea,
+#lgWrapper textarea {
+    color: var(--lg-green);
+}
+
 #lgWrapper .form-check-label {
-    color: var(--lg-green-dark);
+    color: var(--lg-grey-dark);
 }
 
 #lgWrapper input,
