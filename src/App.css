@@ -1,5 +1,6 @@
 :root {
     --lg-background: #2c2e2b;
+    --lg-background-light: #2c2e2bcc;
     --lg-green: #accc58;
     --lg-green-dark: #9dc53b;
     --lg-blue: #5395e5;
@@ -20,6 +21,14 @@ body {
 }
 
 /* Generic */
+.headerTextColors {
+    background: var(--lg-background-light);
+    color: var(--lg-grey-light);
+    font-weight: bold;
+    font-size: 0.755rem;
+    line-height: 30px;
+}
+
 .noRecordsInfo {
     height: 100px;
     font-size: 16px;
@@ -55,17 +64,6 @@ body {
     color: var(--lg-blue);
 }
 
-#productRowHeader {
-    font-size: 14px;
-}
-
-#productRowHeader,
-#productAddSection {
-    background: #2c2e2bcc;
-    color: var(--lg-grey-light);
-    font-weight: bold;
-}
-
 #productAddSection {
     padding-top: 15px;
     margin-bottom: 15px;
@@ -88,7 +86,6 @@ body {
 #productRowHeader,
 .productRow {
     font-size: 0.755rem;
-    height: 30px;
     line-height: 30px;
 }
 
@@ -228,4 +225,5 @@ body {
 
 #lgWrapper label {
     font-size: 12px;
+    color: var(--lg-grey-light);
 }

@@ -112,7 +112,7 @@ class ProductPage extends Page {
                 <div className="row">
                     <h4 className="headerCaption">Product Page</h4>
                 </div>
-                <div id="productRowHeader" className="row">
+                <div id="productRowHeader" className="row headerTextColors">
                     <div className="col">Name</div>
                     <div className="col">Price</div>
                     <div className="col">Quantity</div>
@@ -143,7 +143,7 @@ class ProductPage extends Page {
                         </div>
                     </div>
                 ))}
-                <div id="productAddSection" className="row">
+                <div id="productAddSection" className="row headerTextColors">
                     <div className="col">
                         <form className="form-row">
                             <div className="form-group col">
@@ -153,7 +153,6 @@ class ProductPage extends Page {
                                     className="form-control form-control-sm"
                                     id="productName"
                                     placeholder="Name"
-                                    aria-describedby="productNameHelp"
                                     value={this.state.currentProduct.name}
                                     onChange={e => {
                                         this.updateCurrentProductName(
@@ -206,7 +205,7 @@ class ProductPage extends Page {
                         </form>
                     </div>
                 </div>
-                <h5 className="highlightText">
+                <h5 className="highlightText float-right">
                     Total: {this.calculateTotal()}{" "}
                     <FontAwesomeIcon icon={faEuroSign} />
                 </h5>
