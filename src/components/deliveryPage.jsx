@@ -114,7 +114,7 @@ class DeliveryPage extends Page {
                         <div className="row px-3 headerTextColors">
                             Delivery address
                         </div>
-                        <div className="row px-3 formPanel">
+                        <div className="row px-3 pt-2 pb-3 formPanel">
                             <div className="form-group w-100">
                                 <label htmlFor="fullName">Full Name</label>
                                 <input
@@ -195,9 +195,9 @@ class DeliveryPage extends Page {
                         <div className="row px-3 headerTextColors">
                             Delivery
                         </div>
-                        <div className="row px-3 py-1 formPanel">
-                            <label>Delivery</label>
+                        <div className="row px-3 pt-2 pb-2 formPanel">
                             <div className="form-group w-100">
+                                <label>Delivery</label>
                                 <div className="form-check">
                                     <input
                                         className="form-check-input"
@@ -237,7 +237,7 @@ class DeliveryPage extends Page {
                                         className="form-check-label"
                                         htmlFor="deliveryCourier2"
                                     >
-                                        Village Deliveries
+                                        Speedy Speed Boy
                                     </label>
                                 </div>
                                 <div className="form-check">
@@ -251,7 +251,7 @@ class DeliveryPage extends Page {
                                         className="form-check-label"
                                         htmlFor="deliveryCourier3"
                                     >
-                                        Speed Drivers
+                                        Fujiwara Tofu Delivery
                                     </label>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@ class DeliveryPage extends Page {
                         <div className="row mt-3 px-3 headerTextColors">
                             Details
                         </div>
-                        <div className="row px-3 py-1 formPanel">
+                        <div className="row px-3 pt-2 pb-2 formPanel">
                             <label htmlFor="comment">Comment</label>
                             <textarea
                                 id="comment"
@@ -272,7 +272,7 @@ class DeliveryPage extends Page {
                         <div className="row px-3 headerTextColors">
                             Invoice data
                         </div>
-                        <div className="row px-3 py-1 formPanel">
+                        <div className="row px-3 pt-2 pb-3 formPanel">
                             <label>Would you like an invoice?</label>
                             <div className="form-group w-100">
                                 <div className="form-check form-check-inline">

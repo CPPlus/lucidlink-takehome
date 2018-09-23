@@ -195,6 +195,7 @@ class ProductPage extends Page {
                             </div>
                             <div className="col">
                                 <button
+                                    id="productAddButton"
                                     type="button"
                                     className="btn-sm btn-primary col"
                                     onClick={this.addProductFromState}

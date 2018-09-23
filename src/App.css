@@ -21,6 +21,18 @@ body {
 }
 
 /* Generic */
+#lgWrapper textarea {
+    font-size: 12px;
+}
+
+#lgWrapper textarea:focus {
+    outline: 1px solid var(--lg-green);
+}
+
+#lgWrapper .form-group {
+    margin-bottom: 5px;
+}
+
 .headerTextColors {
     background: var(--lg-background-light);
     color: var(--lg-grey-light);
@@ -67,6 +79,11 @@ body {
 #productAddSection {
     padding-top: 15px;
     margin-bottom: 15px;
+    padding-bottom: 12px;
+}
+
+#productAddButton {
+    vertical-align: top;
 }
 
 .productRow {
@@ -196,7 +213,7 @@ body {
     border-radius: 0px;
     cursor: pointer;
     padding: 0.22rem 0.5rem;
-    font-size: 0.775rem;
+    font-size: 0.774rem;
 }
 
 #lgWrapper .btn-primary:hover {
@@ -226,4 +243,19 @@ body {
 #lgWrapper label {
     font-size: 12px;
     color: var(--lg-grey-light);
+    vertical-align: top;
+    margin-bottom: 0px;
+}
+
+#lgWrapper input,
+#lgWrapper select,
+#lgWrapper textarea,
+#lgWrapper .form-check-label {
+    color: var(--lg-green-dark);
+}
+
+#lgWrapper input,
+#lgWrapper select,
+#lgWrapper textarea {
+    background: var(--lg-background);
 }
