@@ -12,7 +12,11 @@ import {
 import { faEuroSign } from "@fortawesome/free-solid-svg-icons";
 
 class PaymentPage extends Page {
-    state = { paymentMethodIsCash: false };
+    constructor(props) {
+        super(props);
+
+        this.state = { paymentMethodIsCash: false };
+    }
 
     getCartTotal() {
         const cartState = this.props.getExposedState("Cart");

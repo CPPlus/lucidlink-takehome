@@ -3,7 +3,11 @@ import Page from "./page";
 import "../css/deliveryPage.css";
 
 class DeliveryPage extends Page {
-    state = { invoice: true };
+    constructor(props) {
+        super(props);
+
+        this.state = { invoice: true };
+    }
 
     renderInvoiceDetails() {
         if (!this.state.invoice) return null;

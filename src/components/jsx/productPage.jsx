@@ -7,8 +7,8 @@ import { faTimes, faEuroSign } from "@fortawesome/free-solid-svg-icons";
 import NoRecordsInfo from "./noRecordsInfo";
 
 class ProductPage extends Page {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             currentProduct: {
@@ -25,14 +25,9 @@ class ProductPage extends Page {
         this.removeProduct = this.removeProduct.bind(this);
     }
 
-    validateEmptyRenderSmall(id, value) {
+    validateEmptyRenderSmall(value) {
         if (value) return null;
-        else
-            return (
-                <small id={id + "_small"} className="form-text required">
-                    Required
-                </small>
-            );
+        else return <small className="form-text required">Required</small>;
     }
 
     fieldsAreValid() {
@@ -42,8 +37,6 @@ class ProductPage extends Page {
     }
 
     componentDidMount() {
-        return;
-
         let products = [
                 ["House", 100000, 1],
                 ["Apple", 0.3, 4],
@@ -200,7 +193,6 @@ class ProductPage extends Page {
                                     }}
                                 />
                                 {this.validateEmptyRenderSmall(
-                                    "productName",
                                     this.state.currentProduct.name
                                 )}
                             </div>
@@ -220,7 +212,6 @@ class ProductPage extends Page {
                                     }}
                                 />
                                 {this.validateEmptyRenderSmall(
-                                    "productPrice",
                                     this.state.currentProduct.price
                                 )}
                             </div>
@@ -240,7 +231,6 @@ class ProductPage extends Page {
                                     }}
                                 />
                                 {this.validateEmptyRenderSmall(
-                                    "productQuantity",
                                     this.state.currentProduct.quantity
                                 )}
                             </div>

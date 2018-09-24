@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 
 class App extends Component {
-    state = { pages: [] };
-    exposedStates = [];
+    constructor(props) {
+        super(props);
 
-    pageId = 1;
+        this.state = { pages: [] };
+        this.exposedStates = [];
+        this.pageId = 1;
+    }
 
     updatePageState(name, exposeReadOnlyState) {
         let page = this.exposedStates.filter(m => m.name === name)[0];
