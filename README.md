@@ -65,6 +65,15 @@ addProduct(name, price, quantity, callback = null) {
 	});
 }
 ```
+Data can be then retrieved from another "Page" subclass by calling the "getExposedState" method and
+passing the name of the page from which we are to retrieve data.
+```
+getCartTotal() {
+	const cartState = this.props.getExposedState("Cart");
+	if (cartState.total) return cartState.total;
+	else return 0;
+}
+```
 
 ### Visual design decisions
 
