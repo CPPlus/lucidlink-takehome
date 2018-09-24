@@ -18,7 +18,7 @@ which are to be derived from.
 sharing data between them is its responsibility.
 
 - Simply inherit from "App" and add the desired pages by
-specifying name, icon, page class type and if the page is to be visible by default.
+specifying name, a FontAwesome icon, page class type and if the page is to be visible by default.
 
 ```
 class ShopApp extends App {
@@ -44,7 +44,8 @@ exposeReadOnlyState() {
 ```
 
 Then this method is automatically called when this very same page
-requests data collection:
+requests data collection.
+Requesting data collection can be done with the "requestExposedStateUpdate" method.
 ```
 addProduct(name, price, quantity, callback = null) {
 	let clonedState = this.cloneState();
@@ -52,12 +53,28 @@ addProduct(name, price, quantity, callback = null) {
 	...
 
 	this.setState(clonedState, () => {
-		// This is a reqest for the page manager component to collect this pages data.
-		// Simply call the "requestExposedStateUpdate" when you want this to happen.
 		// We are doing this in the "setState" callback here, because our "exposeReadOnlyState"
-		// depends on the state object.
+		// depends on the state object and we want it to be up to date before exposing its data.
 		this.requestExposedStateUpdate();
 		if (callback) callback();
 	});
 }
 ```
+
+### Visual design decisions
+
+The design is inspired from the LucidLink web portal - the background image, the side menu layout and
+the colors are mostly taken from there.
+
+### Automated testing decisions
+
+Enzyme and Jest were chosen, because they are currently the most popular duo for React testing.
+
+### Resources
+
+Learning React (other than google searches and articles) - https://www.youtube.com/watch?v=Ke90Tje7VS0
+Dynamic component rendering - https://medium.com/@Carmichaelize/dynamic-tag-names-in-react-and-jsx-17e366a684e9
+Sidebar layout template - https://startbootstrap.com/template-overviews/simple-sidebar/
+Learning Enzyme and Jest - https://www.youtube.com/watch?v=aSQ8v9JH5C8&list=PLGDf0elkI13EfDa45q-q1YpAIMBl5mjab
+
+Bootstrap and FontAwesome were used for styling.
