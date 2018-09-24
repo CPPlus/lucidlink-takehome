@@ -72,9 +72,9 @@ Enzyme and Jest were chosen, because they are currently the most popular duo for
 
 ### Resources
 
-Learning React (other than google searches and articles) - https://www.youtube.com/watch?v=Ke90Tje7VS0
-Dynamic component rendering - https://medium.com/@Carmichaelize/dynamic-tag-names-in-react-and-jsx-17e366a684e9
-Sidebar layout template - https://startbootstrap.com/template-overviews/simple-sidebar/
-Learning Enzyme and Jest - https://www.youtube.com/watch?v=aSQ8v9JH5C8&list=PLGDf0elkI13EfDa45q-q1YpAIMBl5mjab
-
+Learning React (other than google searches and articles) - https://www.youtube.com/watch?v=Ke90Tje7VS0  
+Dynamic component rendering - https://medium.com/@Carmichaelize/dynamic-tag-names-in-react-and-jsx-17e366a684e9  
+Sidebar layout template - https://startbootstrap.com/template-overviews/simple-sidebar/  
+Learning Enzyme and Jest - https://www.youtube.com/watch?v=aSQ8v9JH5C8&list=PLGDf0elkI13EfDa45q-q1YpAIMBl5mjab  
+  
 Bootstrap and FontAwesome were used for styling.
