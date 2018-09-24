@@ -21,6 +21,10 @@ body {
 }
 
 /* Generic */
+#lgWrapper .formPanel {
+    background: #2c2e2bf7;
+}
+
 #lgWrapper textarea {
     font-size: 12px;
 }
