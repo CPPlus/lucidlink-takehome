@@ -3,6 +3,9 @@
 ### Starting the app itself
 - Go to the root directory and run "npm start" there.
 
+It should look like this on the latest browsers:
+![alt text](https://raw.githubusercontent.com/CPPlus/lucidlink-takehome/master/demo_images/cartPage.png)
+
 ### Starting the app tests
 
 - Go to the root directory and run "npm test" there.
@@ -36,7 +39,7 @@ class ShopApp extends App {
 will need to have its "exposeReadOnlyState" method overridden. This
 method has to return the data that is to be exposed.
 
-Example from src/components/jsx/productPage.jsx
+Example from **src/components/jsx/productPage.jsx**
 ```
 exposeReadOnlyState() {
 	return { total: this.calculateTotal() };
