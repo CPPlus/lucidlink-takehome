@@ -6,6 +6,7 @@
     --lg-blue: #5395e5;
     --lg-grey-light: #d2d2d2;
     --lg-grey-dark: #808184;
+    --lg-warning: #cc5555;
 }
 
 .lgSelected {
@@ -59,7 +60,7 @@ body {
 }
 
 #lgWrapper .removeProductButton:hover {
-    color: #cc5555;
+    color: var(--lg-warning);
 }
 
 #lgWrapper .headerCaption {

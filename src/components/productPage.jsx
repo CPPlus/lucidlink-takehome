@@ -1,5 +1,6 @@
 import React from "react";
 import Page from "./page";
+import "./productPage.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEuroSign } from "@fortawesome/free-solid-svg-icons";
@@ -16,11 +17,28 @@ class ProductPage extends Page {
                 price: "",
                 quantity: ""
             },
+            productCanBeAdded: false,
             productList: []
         };
 
         this.addProductFromState = this.addProductFromState.bind(this);
         this.removeProduct = this.removeProduct.bind(this);
+    }
+
+    validateEmptyRenderSmall(id, value) {
+        if (value) return null;
+        else
+            return (
+                <small id={id} className="form-text required">
+                    Required
+                </small>
+            );
+    }
+
+    fieldsAreValid() {
+        let cp = this.state.currentProduct;
+        let result = cp.name != "" && cp.price != "" && cp.quantity != "";
+        return result;
     }
 
     componentDidMount() {
@@ -67,6 +85,7 @@ class ProductPage extends Page {
     }
 
     addProductFromState() {
+        if (!this.fieldsAreValid()) return;
         let product = this.state.currentProduct;
         this.addProduct(product.name, product.price, product.quantity);
     }
@@ -85,6 +104,9 @@ class ProductPage extends Page {
             )
         );
         clonedState.currentProduct.id++;
+        clonedState.currentProduct.name = "";
+        clonedState.currentProduct.price = "";
+        clonedState.currentProduct.quantity = "";
         this.setState(clonedState, () => {
             this.props.requestExposedStateUpdate(
                 this.exposeReadOnlyState.bind(this)
@@ -173,6 +195,10 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
+                                {this.validateEmptyRenderSmall(
+                                    "productName",
+                                    this.state.currentProduct.name
+                                )}
                             </div>
                             <div className="form-group col">
                                 <input
@@ -189,6 +215,10 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
+                                {this.validateEmptyRenderSmall(
+                                    "productPrice",
+                                    this.state.currentProduct.price
+                                )}
                             </div>
                             <div className="form-group col">
                                 <input
@@ -205,12 +235,21 @@ class ProductPage extends Page {
                                         );
                                     }}
                                 />
+                                {this.validateEmptyRenderSmall(
+                                    "productQuantity",
+                                    this.state.currentProduct.quantity
+                                )}
                             </div>
                             <div className="col">
                                 <button
                                     id="productAddButton"
                                     type="button"
-                                    className="btn-sm btn-primary col"
+                                    className={
+                                        "btn-sm btn-primary col" +
+                                        (this.fieldsAreValid()
+                                            ? ""
+                                            : " required")
+                                    }
                                     onClick={this.addProductFromState}
                                 >
                                     Add
@@ -223,6 +262,7 @@ class ProductPage extends Page {
                     Total: {this.calculateTotal()}{" "}
                     <FontAwesomeIcon icon={faEuroSign} />
                 </h5>
+                T/F: {this.state.productCanBeAdded ? "TRUE" : "FALSE"}
             </div>
         );
     }

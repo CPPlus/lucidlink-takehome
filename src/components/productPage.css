@@ -1,0 +1,20 @@
+#lgWrapper .required:not(button) {
+    color: var(--lg-warning);
+    font-size: 0.7rem;
+    line-height: 15px;
+    font-weight: bold;
+}
+
+#lgWrapper #productAddButton.required {
+    background: var(--lg-warning);
+    color: var(--lg-grey-light);
+}
+
+#lgWrapper #productAddButton.required:hover,
+#lgWrapper #productAddButton.required:focus {
+    background: var(--lg-warning);
+}
+
+#lgWrapper #productAddButton.required:hover {
+    color: white;
+}
