@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -65,6 +67,43 @@ class App extends Component {
             if (this.state.pages[i].id === pageId)
                 if (this.state.pages[i].selected) return "lgSelected";
         return " ";
+    }
+
+    render() {
+        return (
+            <div id="lgWrapper" className="toggled">
+                <div id="sidebar-wrapper">
+                    <ul className="sidebar-nav">
+                        <li className="sidebar-brand">
+                            <a href="#">LG</a>
+                        </li>
+                        {this.state.pages.map(page => (
+                            <li
+                                key={page.id}
+                                onClick={() => {
+                                    this.selectPage(page.id);
+                                }}
+                            >
+                                <a
+                                    href="#"
+                                    className={this.getPageIconClasses(page.id)}
+                                >
+                                    <FontAwesomeIcon icon={page.icon} />
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div id="page-content-wrapper">
+                    <div className="container-fluid">
+                        {this.state.pages.map(page =>
+                            this.renderPageByDescriptor(page)
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
     }
 }
 

@@ -5,7 +5,6 @@ import ProductPage from "./components/jsx/productPage";
 import DeliveryPage from "./components/jsx/deliveryPage";
 import PaymentPage from "./components/jsx/paymentPage";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCartPlus,
     faTruck,
@@ -19,43 +18,6 @@ class ShopApp extends App {
         this.addPage("Cart", faCartPlus, ProductPage, true);
         this.addPage("Delivery", faTruck, DeliveryPage, false);
         this.addPage("Payment", faCreditCard, PaymentPage, false);
-    }
-
-    render() {
-        return (
-            <div id="lgWrapper" className="toggled">
-                <div id="sidebar-wrapper">
-                    <ul className="sidebar-nav">
-                        <li className="sidebar-brand">
-                            <a href="#">LG</a>
-                        </li>
-                        {this.state.pages.map(page => (
-                            <li
-                                key={page.id}
-                                onClick={() => {
-                                    this.selectPage(page.id);
-                                }}
-                            >
-                                <a
-                                    href="#"
-                                    className={this.getPageIconClasses(page.id)}
-                                >
-                                    <FontAwesomeIcon icon={page.icon} />
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                <div id="page-content-wrapper">
-                    <div className="container-fluid">
-                        {this.state.pages.map(page =>
-                            this.renderPageByDescriptor(page)
-                        )}
-                    </div>
-                </div>
-            </div>
-        );
     }
 }
 
