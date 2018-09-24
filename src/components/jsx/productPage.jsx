@@ -1,6 +1,6 @@
 import React from "react";
 import Page from "./page";
-import "./productPage.css";
+import "../css/productPage.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEuroSign } from "@fortawesome/free-solid-svg-icons";

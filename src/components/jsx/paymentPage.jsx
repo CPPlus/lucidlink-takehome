@@ -1,6 +1,6 @@
 import React from "react";
 import Page from "./page";
-import "./paymentPage.css";
+import "../css/paymentPage.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

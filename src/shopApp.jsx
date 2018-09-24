@@ -1,9 +1,9 @@
 import React from "react";
 import App from "./App";
 
-import ProductPage from "./components/productPage";
-import DeliveryPage from "./components/deliveryPage";
-import PaymentPage from "./components/paymentPage";
+import ProductPage from "./components/jsx/productPage";
+import DeliveryPage from "./components/jsx/deliveryPage";
+import PaymentPage from "./components/jsx/paymentPage";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

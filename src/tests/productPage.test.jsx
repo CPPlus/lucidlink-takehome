@@ -1,5 +1,5 @@
 import React from "react";
-import ProductPage from "./productPage";
+import ProductPage from "../components/productPage";
 import { shallow } from "enzyme";
 
 describe("Product page", () => {

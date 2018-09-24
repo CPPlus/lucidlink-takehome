@@ -1,6 +1,6 @@
 import React from "react";
 import Page from "./page";
-import "./deliveryPage.css";
+import "../css/deliveryPage.css";
 
 class DeliveryPage extends Page {
     state = { invoice: true };
