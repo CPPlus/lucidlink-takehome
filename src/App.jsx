@@ -23,10 +23,10 @@ class App extends Component {
             this.createPageDescriptor(faCartPlus, ProductPage, false)
         );
         this.state.pages.push(
-            this.createPageDescriptor(faTruck, DeliveryPage, true)
+            this.createPageDescriptor(faTruck, DeliveryPage, false)
         );
         this.state.pages.push(
-            this.createPageDescriptor(faCreditCard, PaymentPage, false)
+            this.createPageDescriptor(faCreditCard, PaymentPage, true)
         );
     }
 

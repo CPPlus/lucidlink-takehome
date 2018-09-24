@@ -49,8 +49,6 @@ class DeliveryPage extends Page {
                             type="radio"
                             name="vat"
                             id="vatNo"
-                            checked
-                            onChange={() => {}}
                         />
                         <label className="form-check-label" htmlFor="vatNo">
                             No
@@ -107,7 +105,7 @@ class DeliveryPage extends Page {
         return (
             <div className="col">
                 <div className="row">
-                    <h4 className="headerCaption">Delivery Page</h4>
+                    <h4 className="headerCaption">Delivery</h4>
                 </div>
                 <div className="row">
                     <div className="col mr-2">
@@ -204,8 +202,6 @@ class DeliveryPage extends Page {
                                         type="radio"
                                         name="courier"
                                         id="deliveryByCourier"
-                                        checked
-                                        onChange={() => {}}
                                     />
                                     <label
                                         className="form-check-label"

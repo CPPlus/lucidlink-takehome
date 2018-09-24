@@ -9,6 +9,16 @@ class ProductPage extends Page {
     constructor() {
         super();
 
+        this.state = {
+            currentProduct: {
+                id: 1,
+                name: "",
+                price: "",
+                quantity: ""
+            },
+            productList: []
+        };
+
         this.addProductFromState = this.addProductFromState.bind(this);
         this.removeProduct = this.removeProduct.bind(this);
     }
@@ -33,16 +43,6 @@ class ProductPage extends Page {
             };
         addProducts();
     }
-
-    state = {
-        currentProduct: {
-            id: 1,
-            name: "",
-            price: "",
-            quantity: ""
-        },
-        productList: []
-    };
 
     updateCurrentProductName(name) {
         let clonedState = this.cloneState();
@@ -110,7 +110,7 @@ class ProductPage extends Page {
         return (
             <div className="col">
                 <div className="row">
-                    <h4 className="headerCaption">Product Page</h4>
+                    <h4 className="headerCaption">Cart</h4>
                 </div>
                 <div id="productRowHeader" className="row headerTextColors">
                     <div className="col">Name</div>

@@ -1,0 +1,11 @@
+#paymentMethods {
+    color: var(--lg-grey-light);
+    font-size: 40px;
+}
+
+#paymentColumn {
+    min-width: 310px;
+}
+
+#paymentButton {
+}
