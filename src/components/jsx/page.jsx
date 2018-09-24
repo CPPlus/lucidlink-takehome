@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 class Page extends Component {
-    requestExposedStateUpdate = null;
-
     constructor(props) {
         super(props);
         this.myRef = React.createRef();

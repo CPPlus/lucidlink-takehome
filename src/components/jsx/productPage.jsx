@@ -29,7 +29,7 @@ class ProductPage extends Page {
         if (value) return null;
         else
             return (
-                <small id={id} className="form-text required">
+                <small id={id + "_small"} className="form-text required">
                     Required
                 </small>
             );
@@ -37,11 +37,13 @@ class ProductPage extends Page {
 
     fieldsAreValid() {
         let cp = this.state.currentProduct;
-        let result = cp.name != "" && cp.price != "" && cp.quantity != "";
+        let result = cp.name !== "" && cp.price !== "" && cp.quantity !== "";
         return result;
     }
 
     componentDidMount() {
+        return;
+
         let products = [
                 ["House", 100000, 1],
                 ["Apple", 0.3, 4],
@@ -107,9 +109,11 @@ class ProductPage extends Page {
         clonedState.currentProduct.name = "";
         clonedState.currentProduct.price = "";
         clonedState.currentProduct.quantity = "";
-        this.setState(clonedState, () => {
-            this.props.requestExposedStateUpdate(
-                this.exposeReadOnlyState.bind(this)
+
+        let _this = this;
+        this.setState(clonedState, function() {
+            _this.props.requestExposedStateUpdate(
+                _this.exposeReadOnlyState.bind(_this)
             );
             if (callback) callback();
         });
