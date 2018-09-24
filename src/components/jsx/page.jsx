@@ -10,6 +10,12 @@ class Page extends Component {
         return "row m-3 " + (this.props.hidden && "d-none");
     }
 
+    requestExposedStateUpdate() {
+        this.props.requestExposedStateUpdate(
+            this.exposeReadOnlyState.bind(this)
+        );
+    }
+
     // Use this method to expose specific state to the other pages.
     // Make sure that it is read only.
     exposeReadOnlyState() {

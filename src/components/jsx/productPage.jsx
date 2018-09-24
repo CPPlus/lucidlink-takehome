@@ -103,11 +103,8 @@ class ProductPage extends Page {
         clonedState.currentProduct.price = "";
         clonedState.currentProduct.quantity = "";
 
-        let _this = this;
-        this.setState(clonedState, function() {
-            _this.props.requestExposedStateUpdate(
-                _this.exposeReadOnlyState.bind(_this)
-            );
+        this.setState(clonedState, () => {
+            this.requestExposedStateUpdate();
             if (callback) callback();
         });
     }
