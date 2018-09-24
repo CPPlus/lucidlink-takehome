@@ -262,7 +262,6 @@ class ProductPage extends Page {
                     Total: {this.calculateTotal()}{" "}
                     <FontAwesomeIcon icon={faEuroSign} />
                 </h5>
-                T/F: {this.state.productCanBeAdded ? "TRUE" : "FALSE"}
             </div>
         );
     }
