@@ -85,7 +85,16 @@ class ProductPage extends Page {
             )
         );
         clonedState.currentProduct.id++;
-        this.setState(clonedState, callback);
+        this.setState(clonedState, () => {
+            this.props.requestExposedStateUpdate(
+                this.exposeReadOnlyState.bind(this)
+            );
+            if (callback) callback();
+        });
+    }
+
+    exposeReadOnlyState() {
+        return { total: this.calculateTotal() };
     }
 
     removeProduct(id) {
@@ -93,7 +102,11 @@ class ProductPage extends Page {
         clonedState.productList = clonedState.productList.filter(
             p => p.id !== id
         );
-        this.setState(clonedState);
+        this.setState(clonedState, () => {
+            this.props.requestExposedStateUpdate(
+                this.exposeReadOnlyState.bind(this)
+            );
+        });
     }
 
     calculateTotal() {

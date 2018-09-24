@@ -7,5 +7,6 @@
     min-width: 310px;
 }
 
-#paymentButton {
+#totalLabel {
+    color: var(--lg-green);
 }

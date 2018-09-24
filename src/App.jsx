@@ -13,6 +13,7 @@ import {
 
 class App extends Component {
     state = { pages: [] };
+    exposedStates = [];
 
     pageId = 1;
 
@@ -20,19 +21,41 @@ class App extends Component {
         super();
 
         this.state.pages.push(
-            this.createPageDescriptor(faCartPlus, ProductPage, false)
+            this.createPageDescriptor("Cart", faCartPlus, ProductPage, false)
         );
         this.state.pages.push(
-            this.createPageDescriptor(faTruck, DeliveryPage, false)
+            this.createPageDescriptor("Delivery", faTruck, DeliveryPage, false)
         );
         this.state.pages.push(
-            this.createPageDescriptor(faCreditCard, PaymentPage, true)
+            this.createPageDescriptor(
+                "Payment",
+                faCreditCard,
+                PaymentPage,
+                true
+            )
         );
     }
 
-    createPageDescriptor(icon, type, selected) {
+    updatePageState(name, exposeReadOnlyState) {
+        let page = this.exposedStates.filter(m => m.name === name)[0];
+        if (page) {
+            let index = this.exposedStates.indexOf(page);
+            let pageState = exposeReadOnlyState();
+            this.exposedStates[index].exposedState = pageState;
+        }
+    }
+
+    getPageState(pageName) {
+        let page = this.exposedStates.filter(m => m.name === pageName)[0];
+        if (page) return page.exposedState;
+        else return null;
+    }
+
+    createPageDescriptor(name, icon, type, selected) {
+        this.exposedStates.push({ name: name, exposedState: {} });
         return {
             id: this.pageId++,
+            name: name,
             icon: icon,
             type: type,
             selected: selected
@@ -41,7 +64,17 @@ class App extends Component {
 
     renderPageByDescriptor(page) {
         const TagName = page.type;
-        return <TagName key={page.id} hidden={!page.selected} />;
+        return (
+            <TagName
+                id={page.name}
+                key={page.id}
+                hidden={!page.selected}
+                requestExposedStateUpdate={exposePageReadOnlyState => {
+                    this.updatePageState(page.name, exposePageReadOnlyState);
+                }}
+                getExposedState={this.getPageState.bind(this)}
+            />
+        );
     }
 
     selectPage(pageId) {

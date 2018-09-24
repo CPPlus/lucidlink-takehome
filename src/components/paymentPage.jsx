@@ -9,8 +9,15 @@ import {
     faCcVisa,
     faCcDiscover
 } from "@fortawesome/free-brands-svg-icons";
+import { faEuroSign } from "@fortawesome/free-solid-svg-icons";
 
 class PaymentPage extends Page {
+    getCartTotal() {
+        const cartState = this.props.getExposedState("Cart");
+        if (cartState.total) return cartState.total;
+        else return 0;
+    }
+
     renderPage() {
         return (
             <div className="col">
@@ -43,6 +50,16 @@ class PaymentPage extends Page {
                                             icon={faCcDiscover}
                                         />
                                     </div>
+                                    <div id="totalLabel" className="row my-2">
+                                        <div className="col pl-0">
+                                            Payment amount:&nbsp;
+                                            {this.getCartTotal()}{" "}
+                                            <FontAwesomeIcon
+                                                icon={faEuroSign}
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div className="row">
                                         <div className="form-group w-100">
                                             <label htmlFor="nameOnCard">
