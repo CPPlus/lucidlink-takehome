@@ -5,6 +5,8 @@
 
 It should look like this on the latest browsers:
 ![alt text](https://raw.githubusercontent.com/CPPlus/lucidlink-takehome/master/demo_images/cartPage.png)
+![alt text](https://raw.githubusercontent.com/CPPlus/lucidlink-takehome/master/demo_images/deliveryPage.png)
+![alt text](https://raw.githubusercontent.com/CPPlus/lucidlink-takehome/master/demo_images/paymentPage.png)
 
 ### Starting the app tests
 
